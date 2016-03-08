@@ -12,4 +12,4 @@
   file: src=/opt/mysqlbix/init.d/mysqlbix dest=/etc/init.d/mysqlbix owner=root group=root state=link
   
 - name: Deploy MySQLBix config.props using provided values
-  template: src=/templates/config.props.j2 dest=/opt/mysqlbix/conf/config.props
+  template: src=templates/config.props.j2 dest=/opt/mysqlbix/conf/config.props
