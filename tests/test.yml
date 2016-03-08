@@ -22,6 +22,3 @@
 
   roles:
     - role_under_test
-  
-  post_tasks:
-    - shell: cat /opt/mysqlbix/conf/config.props
