@@ -11,7 +11,7 @@ MysqlbixDaemon.Sleep={{ mysqlbix_sleep }}
 MysqbixDaemon.MaxThreadNumber={{ mysqlbix_maxthreadnumber }}
 
 
-DatabaseList={{ mysqlbix_databaselist | join(",") }}
+DatabaseList={{ mysqlbix_databaselist | map(attribute='name') | join(",") }}
 
 #Maximum number of active connection inside pool
 DatabaseList.MaxActive={{ mysqlbix_maxactive }}
