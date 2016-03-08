@@ -1,0 +1,37 @@
+ZabbixServerList={{ zabbix_server }}
+
+ZabbixServer1.Address={{ zabbix_server_ip }}
+ZabbixServer1.Port={{ zabbix_server_port }}
+
+MysqlbixDaemon.PidFile={{ mysqlbix_pidfile }}
+
+#frequency of item's refresh
+MysqlbixDaemon.Sleep={{ mysqlbix_sleep }}
+#MaxThreadNumber should be >= than the number of your databases
+MysqbixDaemon.MaxThreadNumber={{ mysqlbix_maxthreadnumber }}
+
+
+DatabaseList={{ mysqlbix_databaselist | join(",") }}
+
+#Maximum number of active connection inside pool
+DatabaseList.MaxActive={{ mysqlbix_maxactive }}
+
+#The maximum number of milliseconds that the pool will wait 
+#(when there are no available connections) for a connection to be returned 
+#before throwing an exception, or <= 0 to wait indefinitely. 
+DatabaseList.MaxWait={{ mysqlbix_maxwait }}
+DatabaseList.MaxIdle={{ mysqlbix_maxidle }}
+
+#define here your connection string for each database
+#jdbc:mysql://[host:port],[host:port].../[database]
+{% for db in mysqlbix_databaselist %}
+{{ db.name }}.Url=jdbc:mysql://{{ db.dbhost }}:{{ db.port }}/{{ db.database }}
+{{ db.name }}.User={{ db.user }}
+{{ db.name }}.Password={{ db.password }}
+{{ db.name }}.QueryListFile={{ db.querylistfile }}
+{% endfor %}
+
+
+#Query Parameter Files 
+QueryListFile=./conf/query.props
+

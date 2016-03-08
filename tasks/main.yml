@@ -1,0 +1,12 @@
+---
+# tasks file for mysqlbix
+
+# Deploy mysqlbix to /opt/mysqlbix
+- name: Deploy MySQLBix to /opt/mysqlbix
+  unarchive: src=mysqlbix-1.1.0-beta.zip dest=/opt/mysqlbix
+    
+- name: Deploy MySQLBix init file to init.d
+  file: src=/opt/mysqlbix/init.d/mysqlbix dest=/etc/init.d/mysqlbix owner=root group=root state=link
+  
+- name: Deploy MySQLBix config.props using provided values
+  template: src=/templates/config.props.j2 dest=/opt/mysqlbix/conf/config.props

@@ -1,0 +1,27 @@
+---
+# defaults file for mysqlbix
+zabbix_server: 'zabbixserver01'
+zabbix_server_ip: '127.0.0.1'
+zabbix_server_port: '10051'
+
+mysqlbix_pidfile: './logs/mysqlbix.pid'
+mysqlbix_sleep: '60'
+mysqlbix_maxthreadnumber: '50'
+mysqlbix_maxactive: '10'
+mysqlbix_maxwait: '100'
+mysqlbix_maxidle: '1'
+mysqlbix_databaselist:
+  - name: db1
+    database: db1
+    dbhost: localhost
+    port: 3304
+    user: zabbix
+    password: password
+    querylistfile: ./conf/query.props
+  - name: db2
+    database: db2
+    dbhost: localhost
+    port: 3304
+    user: zabbix
+    password: password
+    querylistfile: ./conf/query.props
