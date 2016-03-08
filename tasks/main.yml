@@ -7,6 +7,7 @@
   
 - name: Deploy MySQLBix to /opt/mysqlbix
   unarchive: src=mysqlbix-1.1.0-beta.zip dest=/opt/mysqlbix
+  creates: /opt/mysqlbix/mysqlbix-1.1.0
     
 - name: Deploy MySQLBix init file to init.d
   file: src=/opt/mysqlbix/init.d/mysqlbix dest=/etc/init.d/mysqlbix owner=root group=root state=link
