@@ -2,6 +2,9 @@
 # tasks file for mysqlbix
 
 # Deploy mysqlbix to /opt/mysqlbix
+- name: Create MySQLBix directory
+  file: path=/opt/mysqlbix owner=root group=root state=directory
+  
 - name: Deploy MySQLBix to /opt/mysqlbix
   unarchive: src=mysqlbix-1.1.0-beta.zip dest=/opt/mysqlbix
     
