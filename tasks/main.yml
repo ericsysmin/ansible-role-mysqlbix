@@ -18,3 +18,8 @@
   
 - name: Deploy MySQLBix config.props using provided values
   template: src=config.props.j2 dest=/opt/mysqlbix/conf/config.props
+  notify:
+  - restart mysqlbix
+  
+- name: Enable the MySQLBix Service
+  service: name=mysqlbix enabled={{ mysqlbix_enabled }}

@@ -1,5 +1,7 @@
 ---
 # defaults file for mysqlbix
+mysqlbix_enabled: yes
+
 zabbix_serverlist:
   - name: 'zabbixserver01'
     ip: '127.0.0.1'
