@@ -4,8 +4,7 @@ After=network.target
  
 [Service]
 Type=simple
-ExecStart=/etc/init.d/mysqlbix start
-ExecStop=/etc/init.d/mysqlbix stop
+ExecStart=java -Duser.language=en -Duser.country=US -Dlog4j.configuration=./conf/log4j.properties -jar mysqlbix-1.1.0.jar  ./conf/config.props
 User=root
 Group=root
  
