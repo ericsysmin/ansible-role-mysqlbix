@@ -2,3 +2,7 @@
 # handlers file for mysqlbix
 - name: restart mysqlbix
   service: name=mysqlbix state=restarted
+- name: start mysqlbix
+  service: name=mysqlbix state=started
+- name: stop mysqlbix
+  service: name=mysqlbix state=stopped
