@@ -1,5 +1,4 @@
 ---
 # handlers file for mysqlbix
----
 - name: restart mysqlbix
   service: name=mysqlbix state=restarted
