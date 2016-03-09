@@ -21,7 +21,10 @@
     creates: /opt/mysqlbix/mysqlbix-1.1.0.jar
 
 - name: Set permissions on mysqlbix
-  file: path=/opt/mysqlbix/init.d/mysqlbix mode=0755
+  file: path="{{ item }}" mode=0755
+  with_items:
+    - /opt/mysqlbix/init.d/mysqlbix
+    - /opt/mysqlbix/run.sh
 
 - name: Deploy MySQLBix init file to init.d
   file: src=/opt/mysqlbix/init.d/mysqlbix dest=/etc/init.d/mysqlbix owner=root group=root state=link
