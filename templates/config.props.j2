@@ -1,5 +1,3 @@
-={{ zabbix_server }}
-
 {% set list=[] %}
 {% for server in zabbix_serverlist %}
 {% set ignored = list.append(server.name) %}
