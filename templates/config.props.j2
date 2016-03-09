@@ -10,8 +10,11 @@ MysqlbixDaemon.Sleep={{ mysqlbix_sleep }}
 #MaxThreadNumber should be >= than the number of your databases
 MysqbixDaemon.MaxThreadNumber={{ mysqlbix_maxthreadnumber }}
 
-
-DatabaseList={{ mysqlbix_databaselist.name|map(attribute='name')|join(',') }}
+{% list=[] %}
+{% for db in mysqlbix_databaselist %}
+{% do list.append(db.name) %}
+{% endfor %}
+DatabaseList={{ list|join(',') }}
 
 #Maximum number of active connection inside pool
 DatabaseList.MaxActive={{ mysqlbix_maxactive }}
