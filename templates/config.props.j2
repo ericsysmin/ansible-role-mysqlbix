@@ -12,7 +12,7 @@ MysqbixDaemon.MaxThreadNumber={{ mysqlbix_maxthreadnumber }}
 
 {% set list=[] %}
 {% for db in mysqlbix_databaselist %}
-{% list.append(db.name) %}
+{% set ignored = list.append(db.name) %}
 {% endfor %}
 DatabaseList={{ list|join(',') }}
 
