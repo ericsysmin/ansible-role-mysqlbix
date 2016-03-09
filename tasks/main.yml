@@ -4,7 +4,14 @@
 # Deploy mysqlbix to /opt/mysqlbix
 - name: Create MySQLBix directory
   file: path=/opt/mysqlbix owner=root group=root state=directory
-  
+
+- name: Ensure build dependencies are installed (RedHat).
+  yum: pkg="{{ item }}" state=installed
+  with_items:
+    - tar
+    - unzip
+  when: ansible_os_family == "RedHat"
+
 - name: Deploy MySQLBix to /opt/mysqlbix
   unarchive: 
     src: mysqlbix-1.1.0-beta.zip
