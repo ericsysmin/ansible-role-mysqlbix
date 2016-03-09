@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Eric Anderson
   description: Ansible Role for deploying the mysqlbix addon for monitoring MySQL with Zabbix
@@ -13,3 +14,4 @@ galaxy_info:
     - database
     - mysqlbix
     - monitoring
+dependencies: []

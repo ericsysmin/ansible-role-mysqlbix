@@ -6,6 +6,9 @@ zabbix_serverlist:
   - name: 'zabbixserver01'
     ip: '127.0.0.1'
     port: '10051'
+  - name: 'zabbixserver02'
+    ip: '127.0.0.2'
+    port: '10051'
 
 mysqlbix_pidfile: './logs/mysqlbix.pid'
 mysqlbix_sleep: '60'

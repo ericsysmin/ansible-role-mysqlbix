@@ -21,7 +21,8 @@
 
 - name: Install mysqlbix systemd service file
   copy: src=mysqlbix.service dest=/usr/lib/systemd/system/mysqlbix.service
-  
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= 7
+
 - name: Deploy MySQLBix config.props using provided values
   template: src=config.props.j2 dest=/opt/mysqlbix/conf/config.props
   notify:
