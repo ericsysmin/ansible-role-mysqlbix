@@ -10,7 +10,7 @@ MysqlbixDaemon.Sleep={{ mysqlbix_sleep }}
 #MaxThreadNumber should be >= than the number of your databases
 MysqbixDaemon.MaxThreadNumber={{ mysqlbix_maxthreadnumber }}
 
-{% list=[] %}
+{% set list=[] %}
 {% for db in mysqlbix_databaselist %}
 {% do list.append(db.name) %}
 {% endfor %}
