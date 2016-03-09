@@ -3,6 +3,11 @@ ericsysmin.mysqlbix
 
 This role configures, and deploys the MySQLBix service which is used with Zabbix to gather database information.
 
+Build Status
+------------
+
+[![Build Status](https://travis-ci.org/ericsysmin/ansible-role-mysqlbix.svg?branch=master)](https://travis-ci.org/ericsysmin/ansible-role-mysqlbix)
+
 Requirements
 ------------
 
