@@ -1,7 +1,15 @@
-ZabbixServerList={{ zabbix_server }}
+={{ zabbix_server }}
 
-ZabbixServer1.Address={{ zabbix_server_ip }}
-ZabbixServer1.Port={{ zabbix_server_port }}
+{% set list=[] %}
+{% for server in zabbix_serverlist %}
+{% set ignored = list.append(server.name) %}
+{% endfor %}
+ZabbixServerList={{ list|join(',') }}
+
+{% for server in zabbix_serverlist %}
+{{ server.name }}.Address={{ server.ip }}
+{{ server.name }}.Port={{ server.port }}
+{% endfor %}
 
 MysqlbixDaemon.PidFile={{ mysqlbix_pidfile }}
 
