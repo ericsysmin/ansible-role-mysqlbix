@@ -12,9 +12,15 @@
     owner: root
     group: root
     creates: /opt/mysqlbix/mysqlbix-1.1.0.jar
-    
+
+- name: Set permissions on mysqlbix
+  file: path=/opt/mysqlbix/init.d/mysqlbix mode=0755
+
 - name: Deploy MySQLBix init file to init.d
   file: src=/opt/mysqlbix/init.d/mysqlbix dest=/etc/init.d/mysqlbix owner=root group=root state=link
+
+- name: Install mysqlbix systemd service file
+  copy: src=mysqlbix.service dest=/usr/lib/systemd/system/mysqlbix.service
   
 - name: Deploy MySQLBix config.props using provided values
   template: src=config.props.j2 dest=/opt/mysqlbix/conf/config.props
