@@ -1,14 +1,13 @@
 [Unit]
-Description=
-After=sshd.service
-Requires=sshd.service
+Description=MySQLBix Agent
+After=network.target
  
 [Service]
 Type=simple
-ExecStart=
-ExecStop=
-User=<enter the user you want this to run as>
-Group=<enter the group you want this to run as>
+ExecStart=/etc/init.d/mysqlbix start
+ExecStop=/etc/init.d/mysqlbix stop
+User=root
+Group=root
  
 [Install]
 WantedBy=multi-user.target
