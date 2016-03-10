@@ -4,8 +4,8 @@ After=network.target
  
 [Service]
 Type=simple
-ExecStart=java -Duser.language=en -Duser.country=US -Dlog4j.configuration=./conf/log4j.properties -jar mysqlbix-1.1.0.jar  ./conf/config.props
-ExecStop=kill `ps -ef | grep java | grep mysqlbix | awk '{ print $2}'`
+ExecStart=/usr/bin/java -Duser.language=en -Duser.country=US -Dlog4j.configuration=/opt/mysqlbix/conf/log4j.properties -jar /opt/mysqlbix/mysqlbix-1.1.0.jar  /opt/mysqlbix/conf/config.props
+ExecStop=/usr/bin/kill `ps -ef | grep java | grep mysqlbix | awk '{ print $2}'`
 User=root
 Group=root
  
