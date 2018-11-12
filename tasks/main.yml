@@ -6,7 +6,7 @@
 
 - name: MySQLBix | RedHat | Ensure build dependencies are installed
   yum: name="{{ item }}" state=installed
-  with_items:
+  loop:
     - tar
     - unzip
     - java-1.8.0-openjdk-devel
@@ -28,10 +28,10 @@
 
 - name: MySQLBix | Deploy MySQLBix init file to init.d
   file:
-    src: /opt/mysqlbix/init.d/mysqlbix 
-    dest: /etc/init.d/mysqlbix 
-    owner: root 
-    group: root 
+    src: /opt/mysqlbix/init.d/mysqlbix
+    dest: /etc/init.d/mysqlbix
+    owner: root
+    group: root
     state: link
 
 - name: MySQLBix | Install mysqlbix systemd service file
