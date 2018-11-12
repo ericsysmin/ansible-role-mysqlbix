@@ -1,13 +1,14 @@
 ---
 galaxy_info:
-  author: Eric Anderson
+  author: ericsysmin
+  role_name: mysqlbix
   description: Ansible Role for deploying the mysqlbix addon for monitoring MySQL with Zabbix
   license: GPLv2
   min_ansible_version: 2.4
   platforms:
-  - name: EL
-    versions:
-    - 7
+    - name: EL
+      versions:
+        - 7
   galaxy_tags:
     - zabbix
     - mysql

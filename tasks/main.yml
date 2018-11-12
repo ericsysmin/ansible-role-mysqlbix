@@ -1,43 +1,47 @@
 ---
 # tasks file for mysqlbix
 
-# Deploy mysqlbix to /opt/mysqlbix
-- name: Create MySQLBix directory
+- name: MySQLBix | Create MySQLBix directory
   file: path=/opt/mysqlbix owner=root group=root state=directory
 
-- name: Ensure build dependencies are installed (RedHat).
-  yum: pkg="{{ item }}" state=installed
+- name: MySQLBix | RedHat | Ensure build dependencies are installed
+  yum: name="{{ item }}" state=installed
   with_items:
     - tar
     - unzip
     - java-1.8.0-openjdk-devel
   when: ansible_os_family == "RedHat"
 
-- name: Deploy MySQLBix to /opt/mysqlbix
-  unarchive: 
+- name: MySQLBix | Deploy MySQLBix to /opt/mysqlbix
+  unarchive:
     src: mysqlbix-1.1.0-beta.zip
     dest: /opt/mysqlbix
     owner: root
     group: root
     creates: /opt/mysqlbix/mysqlbix-1.1.0.jar
 
-- name: Set permissions on mysqlbix
+- name: MySQLBix | Set permissions on mysqlbix
   file: path="{{ item }}" mode=0755
   with_items:
     - /opt/mysqlbix/init.d/mysqlbix
     - /opt/mysqlbix/run.sh
 
-- name: Deploy MySQLBix init file to init.d
-  file: src=/opt/mysqlbix/init.d/mysqlbix dest=/etc/init.d/mysqlbix owner=root group=root state=link
+- name: MySQLBix | Deploy MySQLBix init file to init.d
+  file:
+    src: /opt/mysqlbix/init.d/mysqlbix 
+    dest: /etc/init.d/mysqlbix 
+    owner: root 
+    group: root 
+    state: link
 
-- name: Install mysqlbix systemd service file
+- name: MySQLBix | Install mysqlbix systemd service file
   copy: src=mysqlbix.service dest=/usr/lib/systemd/system/mysqlbix.service
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int >= 7
 
-- name: Deploy MySQLBix config.props using provided values
+- name: MySQLBix | Deploy MySQLBix config.props using provided values
   template: src=config.props.j2 dest=/opt/mysqlbix/conf/config.props
   notify:
-  - restart mysqlbix
-  
-- name: Enable the MySQLBix Service
+    - restart mysqlbix
+
+- name: MySQLBix | Enable the MySQLBix Service
   service: name=mysqlbix enabled={{ mysqlbix_enabled }}
