@@ -2,15 +2,25 @@
 # tasks file for mysqlbix
 
 - name: MySQLBix | Create MySQLBix directory
-  file: path=/opt/mysqlbix owner=root group=root state=directory
+  file:
+    path: /opt/mysqlbix
+    owner: root
+    group: root
+    state: directory
 
 - name: MySQLBix | RedHat | Ensure build dependencies are installed
-  yum: name="{{ item }}" state=installed
-  loop:
-    - tar
-    - unzip
-    - java-1.8.0-openjdk-devel
+  yum:
+    name:
+      - tar
+      - unzip
+      - java-1.8.0-openjdk-devel
+    state: installed
+  register: task_result
+  until: task_result is success
+  retries: 10
+  delay: 2
   when: ansible_os_family == "RedHat"
+
 
 - name: MySQLBix | Deploy MySQLBix to /opt/mysqlbix
   unarchive:
