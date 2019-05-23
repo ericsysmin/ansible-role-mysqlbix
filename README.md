@@ -1,6 +1,7 @@
 # mysqlbix
 
-This role configures, and deploys the MySQLBix service which is used with Zabbix to gather database information.
+This role configures, and deploys the MySQLBix service which is used with Zabbix
+to gather database information.
 
 ## Build Status
 
@@ -20,8 +21,7 @@ None
 
 ## Example Playbook
 
-```
-
+```yaml
 - hosts: servers
   roles:
      - ericsysmin.mysqlbix
